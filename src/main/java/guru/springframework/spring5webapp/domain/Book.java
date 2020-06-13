@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import guru.springframework.spring5webapp.util.GeneralUtilities;
 
@@ -30,6 +31,9 @@ public class Book {
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors;
+
+	@ManyToOne
+	private Publisher publisher;
 
 	// JPA needs a zero args constructor
 	public Book() {
@@ -73,6 +77,14 @@ public class Book {
 
 	public void setAuthors(Set<Author> authors1) {
 		this.authors = authors1;
+	}
+
+	public Publisher getPublisher() {
+		return this.publisher;
+	}
+
+	public void setPublisher(Publisher publisher1) {
+		this.publisher = publisher1;
 	}
 
 	@Override

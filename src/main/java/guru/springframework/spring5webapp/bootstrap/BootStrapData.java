@@ -5,8 +5,10 @@ import org.springframework.stereotype.Component;
 
 import guru.springframework.spring5webapp.domain.Author;
 import guru.springframework.spring5webapp.domain.Book;
+import guru.springframework.spring5webapp.domain.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
+import guru.springframework.spring5webapp.repositories.PublisherRepository;
 
 /**
  * @author Bruno S. Alessi <bruno_alessi@yahoo.com.br>
@@ -17,12 +19,14 @@ public class BootStrapData implements CommandLineRunner {
 
 	private final AuthorRepository authorRepository;
 	private final BookRepository bookRepository;
-	
-	
-	public BootStrapData(AuthorRepository authorRepository1, BookRepository bookRepository1) {
+	private final PublisherRepository publisherRepository;
+
+	public BootStrapData(AuthorRepository authorRepository1, BookRepository bookRepository1,
+			PublisherRepository publisherRepository1) {
 		super();
 		this.authorRepository = authorRepository1;
 		this.bookRepository = bookRepository1;
+		this.publisherRepository = publisherRepository1;
 	}
 
 	@SuppressWarnings("boxing")
@@ -41,8 +45,16 @@ public class BootStrapData implements CommandLineRunner {
 		noEjb.getAuthors().add(rod);
 		this.authorRepository.save(rod);
 		this.bookRepository.save(noEjb);
-	
+
+		Publisher anyPub = new Publisher("addr line 1", "city", "state", 111);
+		anyPub.getBooks().add(ddd);
+		anyPub.getBooks().add(noEjb);
+		ddd.setPublisher(anyPub);
+		noEjb.setPublisher(anyPub);
+		this.publisherRepository.save(anyPub);
+
 		System.out.println("Bootstrapped database");
+		System.out.printf("Number of publishers: %d\n", this.publisherRepository.count());
 		System.out.printf("Number of authors: %d\n", this.authorRepository.count());
 		System.out.printf("Number of books: %d\n", this.bookRepository.count());
 	}
