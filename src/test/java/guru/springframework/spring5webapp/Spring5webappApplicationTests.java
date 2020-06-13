@@ -11,6 +11,7 @@ public class Spring5webappApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		//no need for code here
 	}
 
 }

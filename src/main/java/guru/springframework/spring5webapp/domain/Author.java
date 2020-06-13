@@ -1,5 +1,6 @@
 package guru.springframework.spring5webapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,6 +11,10 @@ import javax.persistence.ManyToMany;
 
 import guru.springframework.spring5webapp.util.GeneralUtilities;
 
+/**
+ * @author Bruno S. Alessi <bruno_alessi@yahoo.com.br>
+ * @since 2020-06-13
+ */
 @Entity
 public class Author {
 
@@ -26,13 +31,13 @@ public class Author {
 	// JPA needs a zero args constructor
 	public Author() {
 		super();
+		this.books = new HashSet<>();
 	}
 
-	public Author(String firstName1, String lastName1, Set<Book> books1) {
+	public Author(String firstName1, String lastName1) {
 		this();
 		this.firstName = firstName1;
 		this.lastName = lastName1;
-		this.books = books1;
 	}
 
 	public Long getId() {
