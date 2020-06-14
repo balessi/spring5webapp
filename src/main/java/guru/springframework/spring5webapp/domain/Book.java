@@ -94,10 +94,8 @@ public class Book {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass()) return false;
 		Book other = (Book) obj;
 		return this.id != null ? this.id.equals(other.id) : other.id != null;
 	}
