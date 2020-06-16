@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import guru.springframework.spring5webapp.util.GeneralUtilities;
@@ -22,12 +23,12 @@ public class Publisher {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String addressLine1;
+	private String name;
 	private String city;
 	private String state;
-	private Integer zip;
 
 	@OneToMany
+	@JoinColumn(name = "publisher_id")
 	private Set<Book> books;
 
 	public Publisher() {
@@ -35,12 +36,11 @@ public class Publisher {
 		this.books = new HashSet<>();
 	}
 
-	public Publisher(String addressLine11, String city1, String state1, int zip1) {
+	public Publisher(String name1, String city1, String state1) {
 		this();
-		this.addressLine1 = addressLine11;
+		this.name = name1;
 		this.city = city1;
 		this.state = state1;
-		this.zip = Integer.valueOf(zip1);
 	}
 
 	public Long getId() {
@@ -51,12 +51,12 @@ public class Publisher {
 		this.id = id1;
 	}
 
-	public String getAddressLine1() {
-		return this.addressLine1;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setAddressLine1(String addressLine11) {
-		this.addressLine1 = addressLine11;
+	public void setAddressLine1(String name1) {
+		this.name = name1;
 	}
 
 	public String getCity() {
@@ -73,14 +73,6 @@ public class Publisher {
 
 	public void setState(String state1) {
 		this.state = state1;
-	}
-
-	public Integer getZip() {
-		return this.zip;
-	}
-
-	public void setZip(Integer zip1) {
-		this.zip = zip1;
 	}
 
 	public Set<Book> getBooks() {
