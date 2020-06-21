@@ -35,15 +35,15 @@ public class BootStrapData implements CommandLineRunner {
 		Publisher pub = new Publisher("SFG publishing", "St Petersburg", "FL");
 		this.publisherRepository.save(pub);
 
-//		Author eric = new Author("Eric", "Evans");
-//		Book ddd = new Book("Domain Driven Design", "123123");
-//		eric.getBooks().add(ddd);
-//		ddd.getAuthors().add(eric);
-//		ddd.setPublisher(pub);
-//		pub.getBooks().add(ddd);
-//		this.authorRepository.save(eric);
-//		this.bookRepository.save(ddd);
-//		this.publisherRepository.save(pub);
+		Author eric = new Author("Eric", "Evans");
+		Book ddd = new Book("Domain Driven Design", "123123");
+		eric.getBooks().add(ddd);
+		ddd.getAuthors().add(eric);
+		ddd.setPublisher(pub);
+		pub.getBooks().add(ddd);
+		this.authorRepository.save(eric);
+		this.bookRepository.save(ddd);
+		this.publisherRepository.save(pub);
 
 		Author rod = new Author("Rod", "Johnson");
 		Book noEjb = new Book("J2EE Development without EJB", "321321");

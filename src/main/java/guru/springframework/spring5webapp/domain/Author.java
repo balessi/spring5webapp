@@ -1,6 +1,7 @@
 package guru.springframework.spring5webapp.domain;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -74,7 +75,7 @@ public class Author {
 
 	@Override
 	public int hashCode() {
-		return this.id != null ? this.id.hashCode() : 0;
+		return Objects.hashCode(this.id);
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class Author {
 		if (obj == null || getClass() != obj.getClass())
 			return false;
 		Author other = (Author) obj;
-		return this.id != null ? this.id.equals(other.id) : other.id == null;
+		return Objects.equals(this.id, other.id);
 	}
 
 	@Override
