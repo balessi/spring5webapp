@@ -15,7 +15,7 @@ public class AuthorController {
 
 	private final AuthorRepository authRepo;
 
-	public AuthorController(AuthorRepository authRepo1) {
+	public AuthorController(final AuthorRepository authRepo1) {
 		super();
 		this.authRepo = authRepo1;
 	}
